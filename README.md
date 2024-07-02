@@ -6,6 +6,8 @@
 
 ### [Builtt in Moduls of node.js](#built-in-module)
 
+### [Event Driven Archetecture node.js](#event-driven-archetecture)
+
 # Local Module
 
 ### `Important node.js modules`
@@ -251,3 +253,57 @@ const readAndWriteFile = fs.readFile(
 );
 
 ```
+
+---
+
+# Event Driven Archetecture
+
+- Node.js is built upon even driven architecture
+- Every core module of node.js is event <br>
+  `steps`
+
+1. `First` a event will be emitted form a `emitter`
+2. A `event listener` will listen the event
+3. then the `event listener` will fire a `callback`
+
+`emitter.emit()`
+
+```
+const EventEmitter = require("node:events");
+
+const myEmitter = new EventEmitter();
+
+// listener
+
+myEmitter.on("greet", (arg) => {
+  const guest = console.log(`Welcome "${arg}" to our house.`);
+});
+
+// emit
+
+myEmitter.emit("greet", "hasan");
+
+```
+
+1. `EventEmitter` `class` is required from `node:events`, then a `instance` of that class is created `myEmitter`
+2. Then a listener is created and the listener is given a name `greet` by `.on` method on `myEmitter` instance
+
+```
+const EventEmitter = require("node:events");
+
+const myEmitter = new EventEmitter();
+
+// listener
+
+myEmitter.on("greet", (arg) => {
+  const guest = console.log(`Welcome "${arg}" to our house.`);
+});
+```
+
+3. After that perticular event is `emitted` (in case of front end it consider it as button click or any aciton)
+
+```
+myEmitter.emit("greet", "hasan");
+```
+
+4. when this `greet` event is `emited` by `emit` i.e. the greet listener will listen to it and the call back function will fire
