@@ -76,3 +76,11 @@
         <td>.mjs</td>        
     </tr>
 </table>
+
+### `types of modules`
+
+#### In general modules system has three types
+
+- Local Modules (we create)
+- Built in modules (come with node.js)
+- Third party modules (created by others)
