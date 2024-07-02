@@ -1,5 +1,13 @@
 # Node .js
 
+### index
+
+### [Local Module](#local-module)
+
+### [Builtt in Moduls of node.js](#built-in-module)
+
+# Local Module
+
 ### `Important node.js modules`
 
 - Operating System Modules (os0)
@@ -169,3 +177,77 @@ module.exports = {
 - so `add` and `a` has given different name it is called `name alias`
 - `add:add2` ==> `add` from `localTwo` become `add2` in `index.js`
 - `a:a2` ==> `a` from `localTwo` become `a2` in `index.js`
+
+---
+
+# Built in Module
+
+### path
+
+- path is a built in module of node.js
+
+```
+const path = require("path");
+
+console.log(path.dirname("D:/Programming-Helo/p-hero-L2B3/module-7/index.js"));
+```
+
+- node modules in initially disened for unix, for windows the `path` string should converted to forward string
+
+`D:\Programming-Helo\p-hero-L2B3\module-7\index.js` ==> `D:/Programming-Helo/p-hero-L2B3/module-7/index.js`
+
+- backward slash `\` to forward slash `/`
+
+## `path.join` -- for joining path
+
+```
+
+```
+
+### `fs.readFileSync` `fs.writeFileSync`
+
+- This is syncronous which is blocking
+
+```
+const fs = require("fs");
+const path = require("path");
+
+// step one
+const readtext = fs.readFileSync("./components/read/readLongTxt.txt", "utf-8");
+
+//step two
+const writtingtext = fs.writeFileSync(
+path.join(\_\_dirname + "/components/read/", "writtentext.txt"),
+readtext
+);
+
+```
+
+### better way of doing it is `async chronous`
+
+`fs.readFile(path[, options], callback)`
+
+```
+const fs = require("fs");
+const path = require("path");
+
+const readAndWriteFile = fs.readFile(
+  "./components/read/readLongTxt.txt",
+  "utf-8",
+  (err, data) => {
+    if (err) {
+      throw Error("Error reading text");
+    } else {
+      // console.log(data);
+      fs.writeFile("./components/read/write.txt", data, "utf-8", (err) => {
+        if (err) {
+          console.log("writting file error");
+        } else {
+          console.log("file successfully writter");
+        }
+      });
+    }
+  }
+);
+
+```
